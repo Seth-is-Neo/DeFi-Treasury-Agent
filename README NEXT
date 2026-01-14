@@ -1,0 +1,54 @@
+#Next Steps
+
+#Integrate live Chainlink / TWAP oracle feeds.
+
+#Connect RL agent to optimize allocations dynamically.
+
+#Extend for live fund management after shadow testing.
+
+
+---
+
+# **File: `DOCS.md`**
+
+```markdown
+# AI Treasury Agent Documentation
+
+## Overview
+
+This system is a **multi-chain AI Treasury Agent** that:
+
+1. Simulates LP allocations across Ethereum, Polygon, and Hedera.
+2. Uses **Bayesian scores and RL agent** for dynamic decision making.
+3. Protects against low liquidity and low reputation pools.
+4. Shadow-mode safe: no real funds used.
+
+---
+
+## Components
+
+- **main.py**: Engine that updates pool states, performs LP allocation calculations, and saves pool data to JSON.
+- **dashboard/dashboard.py**: Dash web app that reads pool data JSON and visualizes LP allocations, pool scores, ROI, impermanent loss, fees, and TWAP deviations.
+- **core/rebalancer.py**: Implements the rebalancing logic, RL + Bayesian score adjustments.
+- **execution/dex_interface.py**: Placeholder for DEX execution (Uniswap, SushiSwap, HederaDEX) and Hedera settlement functions.
+- **execution/rl_agent.py**: Reinforcement learning agent code.
+- **pool_data.json**: Auto-generated file shared between engine and dashboard.
+
+---
+
+## Shadow Mode Workflow
+
+1. `main.py` runs in a loop (every 5 seconds).  
+2. Calculates LP allocations and pool scores.  
+3. Prints shadow allocation logs to terminal.  
+4. Saves `pool_data.json`.  
+5. Dashboard reads JSON, updates charts in real-time.  
+
+---
+
+## Future Extensions
+
+- Integrate **live oracle feeds** (Chainlink / TWAP) for price-based risk adjustment.  
+- Connect to **real LP execution** for live treasury operations.  
+- Add **alert notifications** for high-risk conditions or unexpected fees.  
+- Expand dashboard with **historical charts**, ROI heatmaps, and scenario simulation.
